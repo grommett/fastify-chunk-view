@@ -1,7 +1,7 @@
 import { Readable } from 'stream';
 import fastifyPlugin from 'fastify-plugin';
 
-export const NO_STRATEGY = `<!--  No strategy found for chunk -->`;
+const NO_STRATEGY = `<!--  No strategy found for chunk -->`;
 
 function fastifyChunkView(fastify, _opts, next) {
   fastify.decorateReply('chunkView', chunkView);
@@ -14,7 +14,7 @@ function fastifyChunkView(fastify, _opts, next) {
  * @param {(string|() => string| () => Promise<string>)[]} chunks
  * @returns {void}
  */
-export async function chunkView(chunks) {
+async function chunkView(chunks) {
   const responseStream = getReadStream();
   this.header('content-type', 'text/html');
   this.header('transfer-encoding', 'chunked');
@@ -34,10 +34,9 @@ export async function chunkView(chunks) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    responseStream.push(null);
   }
 
-  responseStream.push(null);
+  return responseStream.push(null);
 }
 
 /**
@@ -46,7 +45,7 @@ export async function chunkView(chunks) {
  * @param {Readable} responseStream
  * @returns {string|Promise<string>}
  */
-export function getChunk(chunk, responseStream) {
+function getChunk(chunk, responseStream) {
   const strategy = getChunkStrategy(chunk, responseStream);
   return strategy ? strategy() : NO_STRATEGY;
 }
@@ -58,7 +57,7 @@ export function getChunk(chunk, responseStream) {
  * @param {Readable} responseStream A Readable Stream
  * @returns {() => string|() => Promise<string>}
  */
-export function getChunkStrategy(chunk, responseStream) {
+function getChunkStrategy(chunk, responseStream) {
   if (typeof chunk === 'string') return () => chunk;
   if (typeof chunk === 'function') return chunk;
   if (chunk instanceof Readable) return handleReadStream(responseStream, chunk);
@@ -72,7 +71,7 @@ export function getChunkStrategy(chunk, responseStream) {
  * @param {Readable} readStream
  * @returns {() => Promise<string>}
  */
-export function handleReadStream(responseStream, readStream) {
+function handleReadStream(responseStream, readStream) {
   return () =>
     new Promise((resolve, reject) => {
       readStream.on('data', data => {
@@ -91,7 +90,7 @@ export function handleReadStream(responseStream, readStream) {
  * Gets a Readable stream setting its `_read` method
  * @returns {Readable} Readable
  */
-export function getReadStream() {
+function getReadStream() {
   const stream = new Readable();
   // eslint-disable-next-line no-empty-function
   stream._read = () => {};
