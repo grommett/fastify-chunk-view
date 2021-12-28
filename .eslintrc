@@ -1,0 +1,72 @@
+{
+  "parserOptions": {
+    "requireConfigFile": false,
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  },
+  "extends": "eslint:recommended",
+  "reportUnusedDisableDirectives": true,
+  "env": {
+    "node": true,
+    "es2021": true,
+    "mocha": true,
+    "browser": true
+  },
+  // Rules https://eslint.org/docs/rules/
+  "rules": {
+    // Possible errors
+    "no-console": "error",
+
+    // Variables
+    "init-declarations": "off",
+    "no-delete-var": "error",
+    "no-label-var": "error",
+    "no-restricted-globals": "off",
+    "no-shadow": "error",
+    "no-shadow-restricted-names": "error",
+    "no-undef": "error",
+    "no-undef-init": "error",
+    "no-undefined": "off",
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used" }],
+    "no-use-before-define": ["error", { "functions": false }],
+
+    // Best Practices
+    "complexity": ["warn", 5],
+    "consistent-return": "error",
+    "curly": ["error", "multi-line"],
+    "eqeqeq": "error",
+    "no-constructor-return": "error",
+    "no-empty-function": "error",
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-param-reassign": "error",
+    "no-proto": "error",
+    "no-return-await": "error",
+    "no-throw-literal": "error",
+    "no-void": "error",
+    "prefer-promise-reject-errors": "error",
+    "require-await": "error",
+
+    /*
+     * Stylistic
+     * Most stylistic rules should be handled by prettier.
+     * Check Prettier options BEFORE adding any eslint style rules
+     * https://prettier.io/docs/en/options.html
+     */
+
+    "camelcase": "error",
+    "eol-last": ["error", "always"],
+    "func-style": ["error", "declaration"],
+    "max-params": ["error", 4],
+    // ES6
+    "no-duplicate-imports": "error",
+    "no-var": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "prefer-destructuring": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "prefer-template": "error"
+  }
+}
