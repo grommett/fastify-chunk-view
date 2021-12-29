@@ -8,7 +8,11 @@
     "test": "tap",
     "lint": "eslint"
   },
-  "keywords": [],
+  "keywords": [
+    "fastify",
+    "progressive html",
+    "progressive render"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

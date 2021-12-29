@@ -36,7 +36,7 @@ async function chunkView(chunks) {
     console.error(error);
   }
 
-  return responseStream.push(null);
+  responseStream.push(null);
 }
 
 /**

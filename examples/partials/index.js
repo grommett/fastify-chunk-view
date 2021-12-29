@@ -12,7 +12,7 @@ fastify.get('/', (req, reply) => {
     fs.createReadStream('content.html'),
     `<p>Text in the middle</p>`,
     function () {
-      return new Promise((resolve, _reject) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           resolve(`<p>This is async content</p>`);
         }, 1000);
@@ -24,5 +24,6 @@ fastify.get('/', (req, reply) => {
 
 fastify.listen(3000, err => {
   if (err) throw err;
+  // eslint-disable-next-line no-console
   console.log(`server listening on ${fastify.server.address().port}`);
 });
