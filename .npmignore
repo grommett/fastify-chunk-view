@@ -1,0 +1,8 @@
+/examples
+/.editorconfig
+/.eslintrc
+/.github
+/.prettierignore
+/.prettierrc
+/.nyc_output
+/README.md

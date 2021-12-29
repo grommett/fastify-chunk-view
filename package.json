@@ -11,7 +11,8 @@
   "keywords": [
     "fastify",
     "progressive html",
-    "progressive render"
+    "progressive render",
+    "pssr"
   ],
   "author": "",
   "license": "ISC",
