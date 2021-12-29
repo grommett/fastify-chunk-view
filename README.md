@@ -3,19 +3,35 @@
 <a href="https://github.com/grommett/fastify-chunk-view/actions/workflows/ci.yaml"><img src="https://github.com/grommett/fastify-chunk-view/workflows/CI/badge.svg" /></a>
 ![Known Vulnerabilities](https://snyk.io/test/github/grommett/fastify-chunk-view/badge.svg)
 
-
-
 A Fastify plugin for sending HTML content to the client as soon as it becomes available.
+
 
 ## Why
 
 This plugin is ideal for situations where you have static content that can be served immediatley and async content that will arrive later. For example, a product list page where the header, styles and hero image can be sent right away while you grab the products from an API.
 
+## Install
+```js
+npm i fastify-chunk-view --save
+```
 ## Usage
+`fastify-chunk-view` supports ESM and CommonJS
+### ESM
+```js
+import fastifyChunkView from 'fastify-chunk-view';
+```
 
-The `chunk-view` plugin takes an array of chunks and sends them to the client in order. A chunk in this sense can be a `string`, a `function` that returns a `string`, an `async function` that returns a `string` or a `Readable` stream.
+### Common JS
+```js
+const fastifyChunkView = require('fastify-chunk-view');
+```
+The `fastify-chunk-view` plugin takes an array of chunks and sends them to the client in that order. A chunk can be:
+- A `string`
+- A `function` that returns a `string`
+- An `async function` that returns a `string`
+- A `Readable` stream
 
-Have a look or run the `examples` folder in this repo for mre details, but here's a silly example to illustate:
+Have a look or run the `examples` folder in this repo for more details. Here's a silly example to illustate:
 
 ```js
 fastify.get('/', (_req, reply) => {
@@ -33,8 +49,9 @@ An example of the ecommerce use case mentioned above:
 ```js
 fastify.get('/', (_req, reply) => {
   reply.chunkView([
-    '<html><head></head><body>',
-    productList,
+    // Sent to client immediately
+    '<html><head></head><body><img src="a-big-marketing-image.jpg">',
+    productList, // Sent after the list is retrieved
     footer,
     '</body></html>'
   ]);
