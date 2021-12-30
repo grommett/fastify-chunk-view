@@ -1,17 +1,22 @@
 {
   "name": "fastify-chunk-view",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Fastify plugin that chunks content as it becomes available.",
   "type": "module",
   "main": "index.js",
   "exports": {
     ".": {
+      "import": "./index.js",
       "require": "./cjs/index.cjs"
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grommett/fastify-chunk-view.git"
+  },
   "scripts": {
     "test": "tap",
-    "lint": "eslint",
+    "lint": "eslint ./*.js ./examples/**/*.js",
     "cjs": "rollup index.js --file cjs/index.cjs --format cjs --exports auto --external stream,fastify-plugin"
   },
   "keywords": [
