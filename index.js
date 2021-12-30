@@ -1,7 +1,7 @@
 import { Readable } from 'stream';
 import fastifyPlugin from 'fastify-plugin';
 
-const NO_STRATEGY = `<!--  No strategy found for chunk -->`;
+export const NO_STRATEGY = `<!--  No strategy found for chunk -->`;
 
 function fastifyChunkView(fastify, _opts, next) {
   fastify.decorateReply('chunkView', chunkView);
@@ -47,7 +47,7 @@ async function chunkView(chunks) {
  */
 function getChunk(chunk, responseStream) {
   const strategy = getChunkStrategy(chunk, responseStream);
-  return strategy ? strategy() : NO_STRATEGY;
+  return strategy();
 }
 
 /**

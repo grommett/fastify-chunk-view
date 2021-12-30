@@ -2,7 +2,7 @@
 import t from 'tap';
 import Fastify from 'fastify';
 import get from 'simple-get';
-import fastifyChunkView from './index.js';
+import fastifyChunkView, { NO_STRATEGY } from './index.js';
 import { Readable } from 'stream';
 
 t.test('reply.chunkView strings', t => {
@@ -209,6 +209,42 @@ t.test('reply.chunkView mixed strings function and async function & Readable', t
   });
 });
 
+t.test('reply.chunkView defaults to NO_STRATEGY when chunk has no strategy for rendering', t => {
+  t.plan(6);
+  const fastify = Fastify();
+  const expected = NO_STRATEGY;
+  let actual = '';
+  fastify.register(fastifyChunkView);
+
+  fastify.get('/', (_req, reply) => {
+    reply.chunkView([new Map()]);
+  });
+
+  fastify.listen(0, (err, address) => {
+    t.error(err);
+
+    get(
+      {
+        method: 'GET',
+        url: address,
+      },
+      (err, response) => {
+        t.error(err);
+        t.equal(response.statusCode, 200);
+        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['transfer-encoding'], 'chunked');
+
+        response.on('data', chunk => {
+          actual += chunk.toString();
+        });
+        response.on('end', () => {
+          t.equal(actual, expected);
+        });
+        fastify.close();
+      }
+    );
+  });
+});
 t.test('reply.chunkView function error handling', t => {
   t.plan(6);
   const fastify = Fastify();
