@@ -2,7 +2,6 @@
 
 <a href="https://github.com/grommett/fastify-chunk-view/actions/workflows/ci.yaml"><img src="https://github.com/grommett/fastify-chunk-view/workflows/CI/badge.svg" /></a>
 ![Known Vulnerabilities](https://snyk.io/test/github/grommett/fastify-chunk-view/badge.svg)
-
 ![Coverage](https://codecov.io/gh/grommett/fastify-chunk-view/branch/main/graph/badge.svg?token=SRZNNEZ5LD)
 
 A [Fastify](https://www.fastify.io/) plugin for sending HTML content to the client as soon as it becomes available.
