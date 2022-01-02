@@ -15,7 +15,7 @@
     "url": "git+https://github.com/grommett/fastify-chunk-view.git"
   },
   "scripts": {
-    "test": "tap --no-coverage",
+    "test": "c8 tap --no-coverage",
     "test:report": "c8 tap --no-coverage",
     "test:html": "c8 --reporter=html tap --no-coverage",
     "lint": "eslint ./*.js ./examples/**/*.js",
