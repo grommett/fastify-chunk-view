@@ -59,11 +59,19 @@ fastify.get('/', (_req, reply) => {
 });
 
 async function productList() {
-  const products = await getProdcucts();
+  const products = await getProducts();
   return `
       <ul>
         ${products.map(product => `<li>${product.name}</li>`).join('')}
       </ul>`;
+}
+
+function getProducts() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve([{ name: 'Product 1' }, { name: 'Product 2' }, { name: 'Product 3' }]);
+    }, 1000);
+  });
 }
 
 function footer() {
