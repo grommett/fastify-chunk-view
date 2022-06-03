@@ -28,7 +28,7 @@ t.test('reply.chunkView strings', t => {
       (err, response) => {
         t.error(err);
         t.equal(response.statusCode, 200);
-        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['content-type'], 'text/html; charset=utf-8');
         t.equal(response.headers['transfer-encoding'], 'chunked');
 
         response.on('data', chunk => {
@@ -69,7 +69,7 @@ t.test('reply.chunkView functions', t => {
       (err, response) => {
         t.error(err);
         t.equal(response.statusCode, 200);
-        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['content-type'], 'text/html; charset=utf-8');
         t.equal(response.headers['transfer-encoding'], 'chunked');
 
         response.on('data', chunk => {
@@ -110,7 +110,7 @@ t.test('reply.chunkView async function', t => {
       (err, response) => {
         t.error(err);
         t.equal(response.statusCode, 200);
-        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['content-type'], 'text/html; charset=utf-8');
         t.equal(response.headers['transfer-encoding'], 'chunked');
 
         response.on('data', chunk => {
@@ -151,7 +151,7 @@ t.test('reply.chunkView readStreams', t => {
       (err, response) => {
         t.error(err);
         t.equal(response.statusCode, 200);
-        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['content-type'], 'text/html; charset=utf-8');
         t.equal(response.headers['transfer-encoding'], 'chunked');
 
         response.on('data', chunk => {
@@ -194,7 +194,7 @@ t.test('reply.chunkView mixed strings function and async function & Readable', t
       (err, response) => {
         t.error(err);
         t.equal(response.statusCode, 200);
-        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['content-type'], 'text/html; charset=utf-8');
         t.equal(response.headers['transfer-encoding'], 'chunked');
 
         response.on('data', chunk => {
@@ -231,7 +231,7 @@ t.test('reply.chunkView defaults to NO_STRATEGY when chunk has no strategy for r
       (err, response) => {
         t.error(err);
         t.equal(response.statusCode, 200);
-        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['content-type'], 'text/html; charset=utf-8');
         t.equal(response.headers['transfer-encoding'], 'chunked');
 
         response.on('data', chunk => {
@@ -273,7 +273,7 @@ t.test('reply.chunkView function error handling', t => {
       (err, response) => {
         t.error(err);
         t.equal(response.statusCode, 200);
-        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['content-type'], 'text/html; charset=utf-8');
         t.equal(response.headers['transfer-encoding'], 'chunked');
 
         response.on('data', chunk => {
@@ -314,7 +314,7 @@ t.test('reply.chunkView Promise reject error handling', t => {
       (err, response) => {
         t.error(err);
         t.equal(response.statusCode, 200);
-        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['content-type'], 'text/html; charset=utf-8');
         t.equal(response.headers['transfer-encoding'], 'chunked');
 
         response.on('data', chunk => {
@@ -361,7 +361,7 @@ t.test('reply.chunkView Readable error handling', t => {
       (err, response) => {
         t.error(err);
         t.equal(response.statusCode, 200);
-        t.equal(response.headers['content-type'], 'text/html');
+        t.equal(response.headers['content-type'], 'text/html; charset=utf-8');
         t.equal(response.headers['transfer-encoding'], 'chunked');
 
         response.on('data', chunk => {

@@ -16,7 +16,7 @@ function fastifyChunkView(fastify, _opts, next) {
  */
 async function chunkView(chunks) {
   const responseStream = getReadStream();
-  this.header('content-type', 'text/html');
+  this.header('content-type', 'text/html; charset=utf-8');
   this.header('transfer-encoding', 'chunked');
   this.send(responseStream);
 
