@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var stream = require('stream');
 var fastifyPlugin = require('fastify-plugin');
 
@@ -22,7 +24,7 @@ function fastifyChunkView(fastify, _opts, next) {
  */
 async function chunkView(chunks) {
   const responseStream = getReadStream();
-  this.header('content-type', 'text/html');
+  this.header('content-type', 'text/html; charset=utf-8');
   this.header('transfer-encoding', 'chunked');
   this.send(responseStream);
 
@@ -53,7 +55,7 @@ async function chunkView(chunks) {
  */
 function getChunk(chunk, responseStream) {
   const strategy = getChunkStrategy(chunk, responseStream);
-  return strategy ? strategy() : NO_STRATEGY;
+  return strategy();
 }
 
 /**
@@ -108,4 +110,5 @@ var index = fastifyPlugin__default["default"](fastifyChunkView, {
   name: 'chunk-view',
 });
 
-module.exports = index;
+exports.NO_STRATEGY = NO_STRATEGY;
+exports["default"] = index;
